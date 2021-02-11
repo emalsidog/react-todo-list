@@ -1,29 +1,53 @@
+// Dependencies
 import React from "react";
 import GoogleLogin from "react-google-login";
+import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 
-const Login = props => {
+// Styles
+import "./login.scss";
+
+const Login = (props) => {
   const { onSubmit, onChange, handleLogin, email, password } = props;
   return (
-    <div>
-      <h3>Login</h3>
-      <form onSubmit={onSubmit}>
-        <div>
-          <input onChange={onChange} value={email} type="email" name="email" placeholder="Enter your email" />
+    <>
+    <Helmet>
+      <title>Log In</title>
+    </Helmet>
+      <form onSubmit={onSubmit} className="ui-form">
+        <h3>Log In</h3>
+
+        <div className="form-row">
+          <input autoComplete="off" onChange={onChange} id="email" value={email} required type="text" name="email" />
+            <label htmlFor="email">Email</label>
         </div>
-        <div>
-          <input onChange={onChange} value={password} type="password" name="password" placeholder="Enter your password" />
+
+        <div className="form-row">
+          <input onChange={onChange} value={password} required id="password" type="password" name="password" />
+            <label htmlFor="password">Password</label>
         </div>
-        <button type="submit">Submit</button>
+        
+        <p>
+          <input type="submit" value="Log In" />
+        </p>
+
+        <div className="divider"><span>OR</span></div>
+
+        <div className="text-center">
+          <GoogleLogin 
+            clientId="1051398545639-mpgsb6eo4esvtvttqq7m9ts6g0du0hb3.apps.googleusercontent.com"
+            buttonText="Log In with Google"
+            onSuccess={handleLogin}
+            onFailure={handleLogin}
+            theme="dark"
+          />
+        </div>
       </form>
-      <hr/>
-      <GoogleLogin 
-        clientId="1051398545639-mpgsb6eo4esvtvttqq7m9ts6g0du0hb3.apps.googleusercontent.com"
-        buttonText="Log In with Google"
-        onSuccess={handleLogin}
-        onFailure={handleLogin}
-      />
-    </div>
-  )
-}
+      <div className="ui-form-2">
+        <span>Do not have an account? <Link className="form-link" to="/accounts/register">Register</Link></span>
+      </div>
+    </>
+  );
+};
 
 export default Login;

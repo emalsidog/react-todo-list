@@ -13,10 +13,10 @@ const UnauthoritativeNavbar = () => {
               <Link className="nav-link" to="/">Home</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/register">Register</Link>
+              <Link className="nav-link" to="/accounts/register">Register</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/login">Login</Link>
+              <Link className="nav-link" to="/accounts/login">Login</Link>
             </li>
           </ul>
         </div>

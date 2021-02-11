@@ -21,7 +21,7 @@ const RegisterHOC = (props) => {
   const onSubmit = (e) => {
     e.preventDefault();
     props.userRegister(userRegister);
-    props.history.push("/login");
+    props.history.push("/accounts/login");
   }
 
   const onChange = (e) => {

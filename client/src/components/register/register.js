@@ -1,29 +1,47 @@
+// Dependencies
 import React from "react";
+import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 
 const Register = ({ onSubmit, onChange, user }) => {
   const { givenName, familyName, email, password, passwordConfirm } = user;
   return (
-    <div>
-      <h3>Register</h3>
-      <form onSubmit={(e) => onSubmit(e)}>
-        <div>
-          <input value={givenName} name="givenName" placeholder="Name" type="text" onChange={onChange} />
+    <>
+      <Helmet>
+        <title>Register</title>
+      </Helmet>
+      
+        
+        <form onSubmit={onSubmit} className="ui-form">
+        <h3>Register</h3>
+          <div className="form-row">
+            <input autoComplete="off" id="givenName" required value={givenName} name="givenName" type="text" onChange={onChange} />
+            <label htmlFor="givenName">First name</label>
+          </div>
+          <div className="form-row">
+            <input autoComplete="off" id="familyName" required value={familyName} name="familyName" type="text" onChange={onChange} />
+            <label htmlFor="familyName">Family name</label>
+          </div>
+          <div className="form-row">
+            <input autoComplete="off" id="email" required value={email} name="email" type="email" onChange={onChange} />  
+            <label htmlFor="email">Email</label>
+          </div>
+          <div className="form-row">
+            <input autoComplete="off" id="password" required value={password} name="password" type="password" onChange={onChange} />  
+            <label htmlFor="password">Password</label>
+          </div>
+          <div className="form-row">
+            <input autoComplete="off" id="passwordConfirm" required value={passwordConfirm} name="passwordConfirm" type="password" onChange={onChange} />  
+            <label htmlFor="passwordConfirm">Confirm password</label>
+          </div>
+          <p>
+            <input type="submit" value="Register" />
+          </p>
+        </form>
+        <div className="ui-form-2">
+          <span>Already have an account? <Link className="form-link" to="/accounts/login">Log In</Link></span>
         </div>
-        <div>
-          <input value={familyName} name="familyName" placeholder="Last name" type="text" onChange={onChange} />
-        </div>
-        <div>
-          <input value={email} name="email" placeholder="Email" type="email" onChange={onChange} />  
-        </div>
-        <div>
-          <input value={password} name="password" placeholder="Password" type="password" onChange={onChange} />  
-        </div>
-        <div>
-          <input value={passwordConfirm} name="passwordConfirm" placeholder="Confirm password" type="password" onChange={onChange} />  
-        </div>
-        <button type="submit">Register</button>
-      </form>
-    </div>
+    </>
   );
 }
 

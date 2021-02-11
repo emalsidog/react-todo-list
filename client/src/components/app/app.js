@@ -1,17 +1,20 @@
 // Dependencies
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Switch } from "react-router-dom";
 
 // Actions
 import { setCurrentUser } from "../../actions/auth";
 
 // Components
+import ProtectedRoute from "../../hoc/protected-route";
 import UnprotectedRoute from "../../hoc/unprotected-route";
-import Navbar from "../navbar";
 import LoginHOC from "../login";
 import RegisterHOC from "../register";
-import Home from "../home";;
+import Home from "../home";
+
+// Styles
+import "./app.scss";
 
 const App = ({ setCurrentUser }) => {
   useEffect(() => {
@@ -20,11 +23,10 @@ const App = ({ setCurrentUser }) => {
 
   return(
     <>
-      <Navbar />
       <Switch>
-        <Route exact path="/" component={Home} />
-        <UnprotectedRoute exact path="/login" component={LoginHOC} />
-        <UnprotectedRoute exact path="/register" component={RegisterHOC} />
+        <ProtectedRoute exact path="/" component={Home} />
+        <UnprotectedRoute exact path="/accounts/login" component={LoginHOC} />
+        <UnprotectedRoute exact path="/accounts/register" component={RegisterHOC} />
       </Switch>
     </>
   );
