@@ -9,8 +9,7 @@ import { setCurrentUser } from "../../actions/auth";
 // Components
 import ProtectedRoute from "../../hoc/protected-route";
 import UnprotectedRoute from "../../hoc/unprotected-route";
-import LoginHOC from "../login";
-import RegisterHOC from "../register";
+import { LoginHOC, RegisterHOC } from "../auth";
 import Home from "../home";
 
 // Styles

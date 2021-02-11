@@ -1,2 +1,2 @@
-import Navbar from "./navbar";
-export default Navbar;
+import NavbarHOC from "./navbar-hoc";
+export default NavbarHOC;

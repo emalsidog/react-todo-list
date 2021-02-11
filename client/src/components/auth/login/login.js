@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 
 // Styles
-import "./login.scss";
+import "../auth.scss";
 
 const Login = (props) => {
   const { onSubmit, onChange, handleLogin, email, password } = props;
@@ -44,7 +44,7 @@ const Login = (props) => {
         </div>
       </form>
       <div className="ui-form-2">
-        <span>Do not have an account? <Link className="form-link" to="/accounts/register">Register</Link></span>
+        <span>Do not have an account? <Link to="/accounts/register">Register</Link></span>
       </div>
     </>
   );

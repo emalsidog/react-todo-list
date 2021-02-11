@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
 // Actions
-import { userLogin, userGoogleLogin } from "../../actions/auth";
+import { userLogin, userGoogleLogin } from "../../../actions/auth";
 
 // Components
 import Login from "./login";

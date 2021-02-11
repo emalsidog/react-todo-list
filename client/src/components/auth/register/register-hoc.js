@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 
 // Actions
-import { userRegister } from "../../actions/auth";
+import { userRegister } from "../../../actions/auth";
 
 // Components
 import Register from "./register";

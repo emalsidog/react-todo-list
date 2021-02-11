@@ -1,0 +1,117 @@
+* {
+  box-sizing: border-box;
+}
+
+.divider {
+  width: 100%; 
+  text-align: center; 
+  border-bottom: 1px solid #FFFFFF; 
+  line-height: 0.1em;
+  margin: 35px 0;
+  span {
+    background:#2b2e30; 
+    color: #FFFFFF;
+    padding:0 10px; 
+  }
+}
+
+.ui-form {
+  max-width: 350px;
+  padding: 80px 30px 30px;
+  margin: 20px auto;
+  background: #2b2e30;
+
+  h3 {
+    position: relative;
+    z-index: 5;
+    margin: 0 0 30px;
+    text-align: center;
+    color: #4a90e2;
+    font-size: 30px;
+    font-weight: normal;
+  }
+  input[type="submit"] {
+    width: 100%;
+    padding: 0;
+    line-height: 42px;
+    background: #4a90e2;
+    border-width: 0;
+    color: white;
+    font-size: 20px;
+  }
+  p {
+    margin: 0;
+    padding-top: 10px;
+  }
+}
+
+.form-row {
+  position: relative;
+  margin-bottom: 40px;
+  input {
+    color: #FFFFFF;
+    display: block;
+    width: 100%;
+    padding: 0 10px;
+    line-height: 40px;
+    font-family: 'Roboto', sans-serif;
+    background: none;
+    border-width: 0;
+    border-bottom: 2px solid #4a90e2;
+    transition: all 0.2s ease;
+  }
+  label {
+    position: absolute;
+    left: 13px;
+    color: #9d959d;
+    font-size: 20px;
+    font-weight: 300;
+    transform: translateY(-35px);
+    transition: all 0.2s ease;
+  }
+  input:focus {
+    outline: 0;
+    border-color: #ec4d17;
+  }
+  input:focus+label, input:valid+label {
+    transform: translateY(-60px);
+    margin-left: -14px;
+    font-size: 14px;
+    font-weight: 400;
+    outline: 0;
+    border-color: #ec4d17;
+    color: #ec4d17;
+  }
+}
+
+.ui-form-2 {
+  max-width: 350px;
+  padding: 20px;
+  margin: 20px auto;
+  background: #2b2e30;
+  color: #FFFFFF;
+  text-align: center;
+  a {
+    text-decoration: none;
+    color: #4a90e2;
+    transition: .3s;
+  }
+  a:hover {
+    color: #3b7ac2;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .ui-form {
+    background: #35363A;
+    margin: 0 auto;
+  }
+  .ui-form-2 {
+    background: #35363A;
+    padding: 0;
+    margin: 5px auto;
+  }
+  .divider span {
+    background: #35363A; 
+  }
+}

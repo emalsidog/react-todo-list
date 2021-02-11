@@ -3,6 +3,9 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 
+// Styles
+import "../auth.scss";
+
 const Register = ({ onSubmit, onChange, user }) => {
   const { givenName, familyName, email, password, passwordConfirm } = user;
   return (
@@ -10,9 +13,7 @@ const Register = ({ onSubmit, onChange, user }) => {
       <Helmet>
         <title>Register</title>
       </Helmet>
-      
-        
-        <form onSubmit={onSubmit} className="ui-form">
+      <form onSubmit={onSubmit} className="ui-form">
         <h3>Register</h3>
           <div className="form-row">
             <input autoComplete="off" id="givenName" required value={givenName} name="givenName" type="text" onChange={onChange} />
@@ -37,10 +38,10 @@ const Register = ({ onSubmit, onChange, user }) => {
           <p>
             <input type="submit" value="Register" />
           </p>
-        </form>
-        <div className="ui-form-2">
-          <span>Already have an account? <Link className="form-link" to="/accounts/login">Log In</Link></span>
-        </div>
+      </form>
+      <div className="ui-form-2">
+        <span>Already have an account? <Link to="/accounts/login">Log In</Link></span>
+      </div>
     </>
   );
 }
