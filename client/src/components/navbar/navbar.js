@@ -18,14 +18,17 @@ const Navbar = ({ user, logoutHandler }) => {
             </button>
             <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
               <li>
+                <Link className="dropdown-item" to="/leaderboard">Leaderboard</Link>
+              </li>
+              <li>
+                <Link className="dropdown-item" to="/about">About</Link>
+              </li>
+              <li><hr className="dropdown-divider" /></li>
+              <li>
                 <button 
                   onClick={logoutHandler} 
                   className="dropdown-item" 
                   type="button">Logout</button>
-              </li>
-              <li><hr className="dropdown-divider" /></li>
-              <li>
-                <Link className="dropdown-item" to="/about">About</Link>
               </li>
             </ul>
           </li>

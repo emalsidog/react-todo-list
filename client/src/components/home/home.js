@@ -6,7 +6,6 @@ import { Helmet } from "react-helmet";
 import "./home.scss";
 
 // Components
-import NavbarHOC from "../navbar";
 import TodoList from "../todo-list";
 
 const Home = () => {
@@ -15,8 +14,8 @@ const Home = () => {
       <Helmet>
         <title>Home</title>
       </Helmet>
+      
       <div>
-        <NavbarHOC />
         <div className="container">
           <TodoList />
           
