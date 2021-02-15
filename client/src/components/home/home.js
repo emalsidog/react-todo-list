@@ -7,6 +7,7 @@ import "./home.scss";
 
 // Components
 import NavbarHOC from "../navbar";
+import TodoList from "../todo-list";
 
 const Home = () => {
   return (
@@ -16,7 +17,14 @@ const Home = () => {
       </Helmet>
       <div>
         <NavbarHOC />
-        <h3>Home</h3>
+        <div className="container">
+          <TodoList />
+          
+          <form className="input-group">
+            <input type="text" className="form-control" placeholder="Todo" />
+            <button className="btn btn-outline-secondary" type="button">Add todo</button>
+          </form>
+        </div>
       </div>
     </>
   );

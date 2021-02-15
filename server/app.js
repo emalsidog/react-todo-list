@@ -16,7 +16,7 @@ app.use(express.json());
 app.use("/accounts", require("./routes/auth"));
 
 // MongoDB connection
-mongoose.connect("mongodb://localhost:27017/react-todo-list", {
+mongoose.connect("mongodb+srv://root:root@cluster.09gqa.mongodb.net/react-todo-list?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true

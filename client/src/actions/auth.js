@@ -116,6 +116,7 @@ export const userGoogleLogin = googleData => {
       }
     })
     const json = await response.json();
+    console.log(json);
     localStorage.setItem("token", json.body.token);
     dispatch({
       type: USER_GOOGLE_LOGIN,

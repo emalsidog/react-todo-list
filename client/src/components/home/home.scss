@@ -1,3 +1,15 @@
 h3 {
   color: #FFFFFF
 }
+
+.input-group {
+  .form-control {
+      background-color: #212429;
+      border: 1px solid #212429;
+      color: #FFFFFF;
+  }
+  .form-control:focus {
+      box-shadow: none;
+      border-color: #5F6AE3;
+  }
+}

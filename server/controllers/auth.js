@@ -1,7 +1,7 @@
 // Dependencies
 const passportConfig = require("../config/passport");
 const User = require("../models/User");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 
 const { OAuth2Client } = require('google-auth-library')
@@ -172,6 +172,7 @@ exports.postGoogle = async (req, res) => {
       });
     }
   } catch (error) {
+    console.log(error);
     return res.status(500).json({
       isError: true,
       message: "Something went wrong... Please, try again later.",
