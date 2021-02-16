@@ -54,13 +54,9 @@ exports.postDeleteTodo = async (req, res) => {
 
     try {
         await req.user.save();
-        const document = await User.findOne({ _id: req.user._id }).populate("todos").exec();
         res.json({
             isError: false,
             message: "Successfully deleted todo.",
-            body: {
-                todos: document.todos
-            }
         })
     } catch (error) {
         res.json({

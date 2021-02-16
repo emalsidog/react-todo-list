@@ -8,3 +8,15 @@
         margin-left: 5px;
     }
 }
+
+@media screen and (max-width: 991px) {
+    .list-item {
+        .buttons-container button {
+            margin-left: 0px;
+            margin-right: 5px;
+        }
+        .buttons-container {
+            margin-top: 10px;
+        }
+    }
+}

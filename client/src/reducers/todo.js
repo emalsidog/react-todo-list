@@ -1,5 +1,7 @@
 import {
-    GET_TODOS
+    GET_TODOS,
+    ADD_TODO,
+    DELETE_TODO
 } from "../constants/todoActionTypes";
 
 const initialState = {
@@ -11,6 +13,15 @@ const todo = (state = initialState, action) => {
         case GET_TODOS:
             return {
                 todos: action.payload
+            }
+        case ADD_TODO:
+            return {
+                ...state, todos: [...state.todos, action.payload]
+            }
+        case DELETE_TODO:
+            const newTodos = state.todos.filter(({ _id }) => _id.toString() !== action.payload);            
+            return {
+                ...state, todos: newTodos
             }
         default: 
             return state;

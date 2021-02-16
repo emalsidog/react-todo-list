@@ -1,14 +1,21 @@
 // Dependencies
 import React from "react";
+import { Helmet } from "react-helmet"
 
 // Styles
 import "./leaderboard.scss";
 
 const Leaderboard = () => {
     return (
-        <div className="container">
-            <h3>Leaderboard</h3>
-        </div>
+        <>
+            <Helmet>
+                <title>Leaderboard</title>
+            </Helmet>
+            
+            <div className="container">
+                <h3>Leaderboard</h3>
+            </div>
+        </>
     );
 }
 
