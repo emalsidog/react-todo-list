@@ -23,6 +23,7 @@ const UserSchema = new mongoose.Schema({
   provider: {
     type: String
   },
+  todos: [{ type: mongoose.Schema.Types.ObjectId, ref: "Todo" }],
   registrationDate: {
     type: Date,
     default: new Date()
@@ -40,4 +41,4 @@ UserSchema.methods.comparePasswords = function(password, done) {
   });
 }
 
-module.exports = User = mongoose.model("users", UserSchema);
+module.exports = mongoose.model("User", UserSchema);

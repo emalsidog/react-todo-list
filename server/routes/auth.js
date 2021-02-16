@@ -1,6 +1,6 @@
 // Dependencies
 const express = require("express");
-const passportConfig = require("../config/passport");
+const verifyUser = require("../config/passport").verifyUser;
 const passport = require("passport");
 
 // Express router
@@ -16,7 +16,7 @@ router.post("/register", authController.postRegister);
 router.post("/login", passport.authenticate("local", { session: false }), authController.postLogin);
 
 // GET => /accounts/authenticated
-router.get("/authenticated", passportConfig.verifyUser, authController.getAuthenticated);
+router.get("/authenticated", verifyUser, authController.getAuthenticated);
 
 // POST => /accounts/google
 router.post("/google", authController.postGoogle);

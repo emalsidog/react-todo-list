@@ -3,6 +3,10 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 
+// Models
+const Todo = require("./models/Todo");
+const User = require("./models/User");
+
 // App
 const app = express();
 
@@ -14,6 +18,7 @@ app.use(express.json());
 
 // Routes
 app.use("/accounts", require("./routes/auth"));
+app.use("/todos", require("./routes/todo"));
 
 // MongoDB connection
 mongoose.connect("mongodb+srv://root:root@cluster.09gqa.mongodb.net/react-todo-list?retryWrites=true&w=majority", {

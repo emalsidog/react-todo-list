@@ -10,7 +10,7 @@ const User = require("../models/User");
 
 // Function to sign token
 exports.getToken = (user) => {
-  return jwt.sign(user, "My lovely bird", { expiresIn: 3600 });
+  return jwt.sign(user, "My lovely bird", {});
 };
 
 // Verivy user

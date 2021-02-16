@@ -1,6 +1,10 @@
+// Dependencies
 import { combineReducers } from "redux";
-import auth from "./auth";
 
-const reducers = combineReducers({ auth });
+// Reducers
+import auth from "./auth";
+import todo from "./todo";
+
+const reducers = combineReducers({ auth, todo });
 
 export default reducers;
