@@ -7,12 +7,11 @@ exports.getTodos = (req, res) => {
         if(error) {
             throw new Error(error);
         }
-        console.log(document);
         res.json({
             isError: false,
             message: "Operation successfull.",
             body: {
-                document
+                todos: document.todos
             }
         });
     });

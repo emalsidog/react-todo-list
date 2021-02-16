@@ -5,7 +5,7 @@ import {
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAILURE,
   USER_GOOGLE_LOGIN,
-  USER_LOGOUT } from "../constants/actionTypes";
+  USER_LOGOUT } from "../constants/authActionTypes";
 
 export const setCurrentUser = () => {
   return async (dispatch) => {
