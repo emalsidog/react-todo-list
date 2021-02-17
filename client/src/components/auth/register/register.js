@@ -11,7 +11,7 @@ const Register = ({ onSubmit, onChange, user }) => {
   return (
     <>
       <Helmet>
-        <title>Register</title>
+        <title>Todoist | Register</title>
       </Helmet>
       <form onSubmit={onSubmit} className="ui-form">
         <h3>Register</h3>
@@ -24,7 +24,7 @@ const Register = ({ onSubmit, onChange, user }) => {
             <label htmlFor="familyName">Family name</label>
           </div>
           <div className="form-row">
-            <input autoComplete="off" id="email" required value={email} name="email" type="email" onChange={onChange} />  
+            <input autoComplete="off" id="email" required value={email} name="email" type="text" onChange={onChange} />  
             <label htmlFor="email">Email</label>
           </div>
           <div className="form-row">

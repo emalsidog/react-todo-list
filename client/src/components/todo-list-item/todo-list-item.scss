@@ -9,6 +9,17 @@
     }
 }
 
+.completed {
+    text-decoration: line-through;
+    font-style: italic;
+    color: #A9A8AB;
+}
+
+.important {
+    font-weight: bold;
+    color: #24aff0;
+}
+
 @media screen and (max-width: 991px) {
     .list-item {
         .buttons-container button {

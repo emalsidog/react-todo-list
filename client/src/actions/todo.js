@@ -1,7 +1,8 @@
 import {
     GET_TODOS,
-    ADD_TODO,
-    DELETE_TODO
+    DELETE_TODO,
+    DONE_TODO,
+    IMPORTANT_TODO
 } from "../constants/todoActionTypes";
 
 export const getTodos = () => {
@@ -38,7 +39,7 @@ export const addTodo = todo => {
     }
 }
 
-export const deleteTodo = (id) => {
+export const deleteTodo = id => {
     return async dispatch => {
         dispatch({
             type: DELETE_TODO,
@@ -52,5 +53,39 @@ export const deleteTodo = (id) => {
             },
             body: JSON.stringify({ id }),
         }); 
+    }
+}
+
+export const doneTodo = id => {
+    return async dispatch => {
+        dispatch({
+            type: DONE_TODO,
+            payload: id
+        });
+        await fetch("/todos/done-todo", {
+            method: "POST",
+            headers: {
+              'Authorization': 'Bearer ' + localStorage.getItem("token"),
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ id }),
+        });
+    } 
+}
+
+export const importantTodo = id => {
+    return async dispatch => {
+        dispatch({
+            type: IMPORTANT_TODO,
+            payload: id
+        });
+        await fetch("/todos/important-todo", {
+            method: "POST",
+            headers: {
+              'Authorization': 'Bearer ' + localStorage.getItem("token"),
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ id }),
+        });
     }
 }

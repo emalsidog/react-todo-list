@@ -9,7 +9,7 @@ const Leaderboard = () => {
     return (
         <>
             <Helmet>
-                <title>Leaderboard</title>
+                <title>Todoist | Leaderboard</title>
             </Helmet>
             
             <div className="container">

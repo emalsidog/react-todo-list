@@ -12,7 +12,7 @@ const Login = (props) => {
   return (
     <>
     <Helmet>
-      <title>Log In</title>
+      <title>Todoist | Log In</title>
     </Helmet>
       <form onSubmit={onSubmit} className="ui-form">
         <h3>Log In</h3>

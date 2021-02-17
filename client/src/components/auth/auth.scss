@@ -71,7 +71,7 @@
   }
   input:focus {
     outline: 0;
-    border-color: #ec4d17;
+    border-color: #24aff0;
   }
   input:focus+label, input:valid+label {
     transform: translateY(-60px);
@@ -79,8 +79,8 @@
     font-size: 14px;
     font-weight: 400;
     outline: 0;
-    border-color: #ec4d17;
-    color: #ec4d17;
+    border-color: #24aff0;
+    color: #24aff0;
   }
 }
 

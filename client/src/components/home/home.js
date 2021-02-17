@@ -12,7 +12,7 @@ import "./home.scss";
 // Components
 import TodoList from "../todo-list";
 
-const Home = ({ addTodo }) => {
+const Home = ({ addTodo, todos }) => {
 
   const [inputValue, setInputValue] = useState("");
 
@@ -28,10 +28,12 @@ const Home = ({ addTodo }) => {
     setInputValue(e.target.value);
   }
 
+  let unfinishedTodos = todos.filter(({ isCompleted }) => !isCompleted);
+
   return (
     <>
       <Helmet>
-        <title>Home</title>
+        <title>Todoist | {unfinishedTodos.length === 0 ? "All's done" : `${unfinishedTodos.length} more to do`}</title>
       </Helmet>
       
       <div>
@@ -48,8 +50,13 @@ const Home = ({ addTodo }) => {
   );
 }
 
+const mapStateToProps = state => {
+  const { todos } = state.todo;
+  return { todos }
+}
+
 const mapDispatchToProps = dispatch => ({
   addTodo: todo => dispatch(addTodo(todo))
 });
 
-export default connect(null, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
