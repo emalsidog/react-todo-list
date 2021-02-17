@@ -17,4 +17,10 @@ router.post("/add-todo", verifyUser, todoController.postAddTodo);
 // POST => /todos/delete-todo
 router.post("/delete-todo", verifyUser, todoController.postDeleteTodo);
 
+// POST => /todos/done-todo
+router.post("/done-todo", verifyUser, todoController.postDoneTodo);
+
+// POST => /todos/important-todo
+router.post("/important-todo", verifyUser, todoController.postImportantTodo);
+
 module.exports = router;

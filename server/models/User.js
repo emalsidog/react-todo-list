@@ -23,7 +23,12 @@ const UserSchema = new mongoose.Schema({
   provider: {
     type: String
   },
+  points: {
+    type: Number,
+    default: 0
+  },
   todos: [{ type: mongoose.Schema.Types.ObjectId, ref: "Todo" }],
+
   registrationDate: {
     type: Date,
     default: new Date()
