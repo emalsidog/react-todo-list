@@ -1,0 +1,23 @@
+.table-container {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    color: #FFFFFF;
+
+    thead > tr {
+        border-bottom: 1px solid #FFFFFF;
+    }
+}
+
+.top-panel {
+    margin: 10px 0;
+    color: #FFFFFF;
+
+    div {
+        padding: 0 5px 0;
+    }
+
+    h4 {
+        font-style: italic;
+    }
+}

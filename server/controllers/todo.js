@@ -2,19 +2,23 @@ const User = require("../models/User");
 const Todo = require("../models/Todo");
 
 // GET => /todos
-exports.getTodos = (req, res) => {
-    User.findOne({ _id: req.user._id }).populate("todos").exec((error, document) => {
-        if(error) {
-            throw new Error(error);
-        }
-        res.json({
+exports.getTodos = async (req, res) => {
+    try {
+        const user = await User.findOne({ _id: req.user._id }).populate("todos").exec();
+        res.status(200).json({
             isError: false,
             message: "Operation successfull.",
             body: {
-                todos: document.todos
+                todos: user.todos
             }
         });
-    });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            isError: true,
+            message: "Something went wrong..."
+        });
+    }
 }
 
 // POST => /todos/add-todo
@@ -73,6 +77,7 @@ exports.postDoneTodo = async (req, res) => {
     const { id } = req.body;
     const points = Math.floor(Math.random() * (11 - 5) + 5);
     req.user.points += points;
+    req.user.totalCompletedTodos += 1;
     try {
 
         const todo = await Todo.findOne({ _id: id });
@@ -98,7 +103,6 @@ exports.postDoneTodo = async (req, res) => {
 exports.postImportantTodo = async (req, res) => {
     const { id } = req.body;
     try {
-
         const todo = await Todo.findOne({ _id: id });
         todo.isImportant = !todo.isImportant;        
 

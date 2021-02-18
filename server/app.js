@@ -19,16 +19,18 @@ app.use(express.json());
 // Routes
 app.use("/accounts", require("./routes/auth"));
 app.use("/todos", require("./routes/todo"));
+app.use("/leaderboard", require("./routes/leaderboard"));
 
 // MongoDB connection
 mongoose.connect("mongodb+srv://root:root@cluster.09gqa.mongodb.net/react-todo-list?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true
-}).then(() => console.log(`Successfully connected to database.`))
-  .catch(e => console.log(`Error: ${e}`));
+}).then(() => console.log("Successfully connected to database."))
+  .catch(error => console.log(`Error: ${error}`));
 
 // Server startup
-app.listen(3001, () => {
-  console.log(`Server is up and running (Port: ${3001})`);
-})
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Server is up and running (Port: ${PORT})`);
+});
