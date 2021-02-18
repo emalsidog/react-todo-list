@@ -1,6 +1,7 @@
 // Dependencies
 import React from "react";
 import { connect } from "react-redux";
+import { useTranslation } from 'react-i18next';
 
 // Actions
 import { userLogout } from "../../actions/auth";
@@ -10,12 +11,14 @@ import Navbar from "./navbar";
 
 const NavbarHOC = ({ user, userLogout }) => {
   
+  const { t } = useTranslation();
+
   const logoutHandler = () => {
     userLogout();
   }
 
   return (
-    <Navbar logoutHandler={logoutHandler} user={user} />
+    <Navbar t={t} logoutHandler={logoutHandler} user={user} />
   );
 }
 

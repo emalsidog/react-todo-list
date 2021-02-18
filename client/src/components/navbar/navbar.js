@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 // Styles
 import "./navbar.scss";
 
-const Navbar = ({ user, logoutHandler }) => {
+const Navbar = ({ user, logoutHandler, t }) => {
   const { givenName, familyName } = user;
   return (
     <nav className="navbar navbar-expand navbar-dark bg-dark">
@@ -18,17 +18,20 @@ const Navbar = ({ user, logoutHandler }) => {
             </button>
             <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
               <li>
-                <Link className="dropdown-item" to="/leaderboard">Leaderboard</Link>
+                <Link className="dropdown-item" to="/leaderboard">{t("Leaderboard")}</Link>
               </li>
               <li>
-                <Link className="dropdown-item" to="/about">About</Link>
+                <Link className="dropdown-item" to="/settings">{t("Settings")}</Link>
+              </li>
+              <li>
+                <Link className="dropdown-item" to="/about">{t("About")}</Link>
               </li>
               <li><hr className="dropdown-divider" /></li>
               <li>
                 <button 
                   onClick={logoutHandler} 
                   className="dropdown-item" 
-                  type="button">Logout</button>
+                  type="button">{t("Logout")}</button>
               </li>
             </ul>
           </li>

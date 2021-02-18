@@ -1,6 +1,7 @@
 // Dependencies
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { useTranslation } from 'react-i18next';
 
 // Actions
 import { getTodos, deleteTodo, doneTodo, importantTodo } from "../../actions/todo";
@@ -15,6 +16,8 @@ const TodoList = ({ todos, getTodos, deleteTodo, doneTodo, importantTodo }) => {
     useEffect(() => {
         getTodos();
     }, [getTodos]);
+
+    const { t } = useTranslation();
 
     const onDelete = id => {
         deleteTodo(id);
@@ -41,10 +44,10 @@ const TodoList = ({ todos, getTodos, deleteTodo, doneTodo, importantTodo }) => {
     return (
         <>
             <ol>
-                <h4>Important</h4>
+                <h4>{t("Important")}</h4>
                 {
                     importantTodos.length === 0 ? 
-                        <div className="info-text">Nothing important to do</div> : 
+                        <div className="info-text">{t("Nothing important to do")}</div> : 
                         importantTodos.map(({ content, _id: id, isCompleted, isImportant }) => {
                             return <TodoListItem key={id}
                                         isCompleted={isCompleted}
@@ -57,10 +60,10 @@ const TodoList = ({ todos, getTodos, deleteTodo, doneTodo, importantTodo }) => {
                 }
             </ol>
             <ol>
-                <h4>To do</h4>
+                <h4>{t("To do")}</h4>
                 {
                     commonTodos.length === 0 ? 
-                        <div className="info-text">Nothing to do</div> : 
+                        <div className="info-text">{t("Nothing to do")}</div> : 
                             commonTodos.map(({ content, _id: id, isCompleted, isImportant }) => {
                             return <TodoListItem key={id}
                                         isCompleted={isCompleted}
