@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 // Actions
 import { addTodo } from "../../actions/todo";
@@ -15,6 +16,7 @@ import TodoList from "../todo-list";
 const Home = ({ addTodo, todos }) => {
 
   const [inputValue, setInputValue] = useState("");
+  const { t } = useTranslation();
 
   const onSubmit = e => {
     e.preventDefault();
@@ -33,7 +35,7 @@ const Home = ({ addTodo, todos }) => {
   return (
     <>
       <Helmet>
-        <title>Todoist | {unfinishedTodos.length === 0 ? "All's done" : `${unfinishedTodos.length} more to do`}</title>
+        <title>Todoist | {unfinishedTodos.length === 0 ? t("All's done") : `${unfinishedTodos.length} ${t("more to do")}`}</title>
       </Helmet>
       
       <div>
@@ -41,8 +43,8 @@ const Home = ({ addTodo, todos }) => {
           <TodoList />
           
           <form onSubmit={onSubmit} className="input-group">
-            <input value={inputValue} onChange={onInputChange} type="text" className="form-control" placeholder="Todo" />
-            <button className="btn btn-outline-secondary" type="submit">Add todo</button>
+            <input value={inputValue} onChange={onInputChange} type="text" className="form-control" placeholder={t("Todo")} />
+            <button className="btn btn-outline-secondary" type="submit">{t("Add todo")}</button>
           </form>
         </div>
       </div>

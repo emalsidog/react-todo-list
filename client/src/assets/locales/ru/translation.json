@@ -8,9 +8,14 @@
     "Leaderboard": "Таблица лидеров",
     "About": "О проекте",
     "Logout": "Выйти",
-    "Your position is:": "Ваша позиция:",
+    "Your position is": "Ваша позиция",
     "Name": "Имя",
     "Points": "Очки",
     "Todos": "Задачи",
-    "Settings": "Настройки"
+    "Settings": "Настройки",
+    "Language": "Язык",
+    "Russian": "Русский",
+    "English": "Английский",
+    "All's done": "Все выполнено",
+    "more to do": "на выполнение"
 }

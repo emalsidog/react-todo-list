@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
+import { useTranslation } from "react-i18next"; 
 
 // Actions
 import { getLeaderboard } from "../../actions/leaderboard";
@@ -14,6 +15,8 @@ import LeaderboardItem from "../leaderboard-item";
 
 const Leaderboard = ({ accounts, getLeaderboard, currentUserPosition }) => {
 
+    const { t } = useTranslation();
+
     useEffect(() => {
         getLeaderboard()
     }, [getLeaderboard])
@@ -21,16 +24,16 @@ const Leaderboard = ({ accounts, getLeaderboard, currentUserPosition }) => {
     return (
         <>
             <Helmet>
-                <title>Todoist | Leaderboard</title>
+                <title>Todoist | {t("Leaderboard")}</title>
             </Helmet>
             
             <div className="container">
                 <div className="row top-panel">
                     <div className="col-12 col-md-12 col-sm-12 col-xs-12 col-lg">
-                        <h4>Leaderboard</h4>
+                        <h4>{t("Leaderboard")}</h4>
                     </div>
                     <div className="col-auto me-auto buttons-container"> 
-                        <div className="info-text">Your position is: {currentUserPosition}</div>
+                        <div className="info-text">{t("Your position is") + ": " + currentUserPosition}</div>
                     </div>
                 </div>
                 <div>
@@ -38,9 +41,9 @@ const Leaderboard = ({ accounts, getLeaderboard, currentUserPosition }) => {
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Points</th>
-                                <th scope="col">Todos</th>
+                                <th scope="col">{t("Name")}</th>
+                                <th scope="col">{t("Points")}</th>
+                                <th scope="col">{t("Todos")}</th>
                             </tr>
                         </thead>
                         <tbody>

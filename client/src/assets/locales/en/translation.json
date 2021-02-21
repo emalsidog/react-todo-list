@@ -8,8 +8,14 @@
     "Leaderboard": "Leaderboard",
     "About": "About",
     "Logout": "Logout",
-    "Your position is:": "Your position is:",
+    "Your position is": "Your position is",
     "Name": "Name",
     "Points": "Points",
-    "Todos": "Todos"
+    "Todos": "Todos",
+    "Settings": "Settings",
+    "Language": "Language",
+    "Russian": "Russian",
+    "English": "English",
+    "All's done": "All's done",
+    "more to do": "more to do"
 }
