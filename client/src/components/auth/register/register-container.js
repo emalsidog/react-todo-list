@@ -1,5 +1,5 @@
 // Dependencies
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { useTranslation } from "react-i18next";
 
@@ -12,11 +12,12 @@ import Register from "./register";
 // Regexp
 const emailRexexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const nameRexexp = /^[a-zA-Zа-яёА-ЯЁ]+$/;
-const passwordRexexp = /^[a-zA-Z0-9]+$/;
+const passwordRexexp = /^[0-9A-Za-z-_]+$/;
 
-const RegisterContainer = ({ userRegister, history }) => {
+const RegisterContainer = ({ userRegister, history, serverResponseMessage, isLoaded }) => {
 
   const { t } = useTranslation();
+  const { isError, message } = serverResponseMessage;
 
   const [userRegisterData, setUserRegisterData] = useState({
     givenName: "",
@@ -79,7 +80,7 @@ const RegisterContainer = ({ userRegister, history }) => {
       passwordError = "Password must be between 6 and 15 characters long";
       setPasswordError(passwordError);
     } else if(!passwordRexexp.test(password)) {
-      passwordError = "Password must be only letters and numbers";
+      passwordError = "Password must be only letters and numbers and special characters (-, _)";
       setPasswordError(passwordError);
     } else {
       passwordError = "";
@@ -105,9 +106,24 @@ const RegisterContainer = ({ userRegister, history }) => {
     e.preventDefault();
     if(validate()) {
       userRegister(userRegisterData);
-      history.push("/accounts/login");
     }
   }
+
+  useEffect(() => {
+
+    if(!isLoaded) {
+      return;
+    }
+
+    if(!isError) {
+      console.log(`${message}. Redirecting...`);
+      setTimeout(() => {
+        history.push("/accounts/login")
+      }, 2000)
+    } else {
+      console.log(message);
+    }
+  }, [ isLoaded, isError, message, history ])
 
   const onChange = (e) => {
     setUserRegisterData({ ...userRegisterData, [e.target.name]: e.target.value })
@@ -118,10 +134,18 @@ const RegisterContainer = ({ userRegister, history }) => {
   );
 }
 
+const mapStateToProps = state => {
+  const { serverResponseMessage, isLoaded } = state.auth;
+  console.log(state.auth);
+  return {
+    serverResponseMessage, isLoaded
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     userRegister: (user) => dispatch(userRegister(user))
   }
 }
 
-export default connect(null, mapDispatchToProps)(RegisterContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterContainer);

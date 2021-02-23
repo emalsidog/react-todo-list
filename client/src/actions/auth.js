@@ -5,7 +5,8 @@ import {
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAILURE,
   USER_GOOGLE_LOGIN,
-  USER_LOGOUT } from "../constants/authActionTypes";
+  USER_LOGOUT,
+  IS_LOADED } from "../constants/authActionTypes";
 
 export const setCurrentUser = () => {
   return async (dispatch) => {
@@ -79,8 +80,9 @@ export const userLogout = () => {
 }
 
 export const userRegister = (user) => {
-  return async (dispatch) => {
+  return async dispatch => {
     try {
+      dispatch({ type: IS_LOADED });
       const response = await fetch("/accounts/register", {
         method: "POST",
         body: JSON.stringify(user),
@@ -88,15 +90,17 @@ export const userRegister = (user) => {
           "Content-Type": "application/json"
         }
       })
-
-      if(response.status !== 401) {
-        const data = await response.json();
+      const data = await response.json();
+      if(response.status !== 401 && response.status !== 400) {
         dispatch({
           type: USER_REGISTER_SUCCESS,
           payload: data
         });
       } else {
-        dispatch({ type: USER_REGISTER_FAILURE });
+        dispatch({ 
+          type: USER_REGISTER_FAILURE,
+          payload: data
+        });
       }
     } catch (error) {
       console.error(error);
@@ -116,7 +120,6 @@ export const userGoogleLogin = googleData => {
       }
     })
     const json = await response.json();
-    console.log(json);
     localStorage.setItem("token", json.body.token);
     dispatch({
       type: USER_GOOGLE_LOGIN,

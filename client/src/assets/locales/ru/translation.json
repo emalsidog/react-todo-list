@@ -35,6 +35,6 @@
     "Family name must be only letters": "Фамилия должна состоять только из букв",
     "Email is not valid": "Email не является допустимым",
     "Password must be between 6 and 15 characters long": "Фамилия должна быть от 2 до 15 символов",
-    "Password must be only letters and numbers": "Пароль должен состоять только из букв и цифр",
+    "Password must be only letters and numbers and special characters (-, _)": "Пароль должен состоять только из букв, цифр и специальных символов (-, _)",
     "Passwords do not match": "Пароли не соответствуют"
 }

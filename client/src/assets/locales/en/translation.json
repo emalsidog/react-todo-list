@@ -35,6 +35,6 @@
     "Family name must be only letters": "Family name must be only letters",
     "Email is not valid": "Email is not valid",
     "Password must be between 6 and 15 characters long": "Password must be between 6 and 15 characters long",
-    "Password must be only letters and numbers": "Password must be only letters and numbers",
+    "Password must be only letters and numbers and special characters (-, _)": "Password must be only letters and numbers and special characters (-, _)",
     "Passwords do not match": "Passwords do not match"
 }
