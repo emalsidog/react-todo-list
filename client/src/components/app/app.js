@@ -9,7 +9,7 @@ import { setCurrentUser } from "../../actions/auth";
 // Components
 import ProtectedRoute from "../../hoc/protected-route";
 import UnprotectedRoute from "../../hoc/unprotected-route";
-import { LoginHOC, RegisterHOC } from "../auth";
+import { LoginContainer, RegisterContainer } from "../auth";
 import Home from "../home";
 import Leaderboard from "../leaderboard";
 import About from "../about";
@@ -30,8 +30,8 @@ const App = ({ setCurrentUser }) => {
         <ProtectedRoute exact path="/leaderboard" component={Leaderboard} />
         <ProtectedRoute exact path="/about" component={About} />
         <ProtectedRoute exact path="/settings" component={Settings} />
-        <UnprotectedRoute exact path="/accounts/login" component={LoginHOC} />
-        <UnprotectedRoute exact path="/accounts/register" component={RegisterHOC} />
+        <UnprotectedRoute exact path="/accounts/login" component={LoginContainer} />
+        <UnprotectedRoute exact path="/accounts/register" component={RegisterContainer} />
       </Switch>
     </>
   );

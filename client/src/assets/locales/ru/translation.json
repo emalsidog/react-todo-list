@@ -17,5 +17,16 @@
     "Russian": "Русский",
     "English": "Английский",
     "All's done": "Все выполнено",
-    "more to do": "на выполнение"
+    "more to do": "на выполнение",
+    "Given name": "Имя",
+    "Family name": "Фамилия",
+    "Email": "Email",
+    "Password": "Пароль",
+    "Confirm password": "Подтвердите пароль",
+    "Register": "Регистрация",
+    "Already have an account?": "Уже зарегестрированы?",
+    "Log In": "Войти",
+    "Log In with Google": "Войти с помощью Google",
+    "Do not have an account?": "Не зарегестрированы?",
+    "OR": "Или"
 }

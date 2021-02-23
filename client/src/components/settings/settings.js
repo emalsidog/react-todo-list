@@ -3,18 +3,15 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
 
+// Components
+import LanguageSelect from "../language-select";
+
 // Styles
 import "./settings.scss";
 
 const Settings = () => {
 
-    const { t, i18n } = useTranslation();
-
-    const languagesList = [{ abbr: "en", name: t("English") }, { abbr: "ru", name: t("Russian") }];
-
-    const handleChange = e => {
-        i18n.changeLanguage(e.target.value);
-    }
+    const { t } = useTranslation();
  
     return (
         <>
@@ -29,11 +26,7 @@ const Settings = () => {
                     {t("Language")}
                 </div>
                 <div className="col-auto me-auto"> 
-                    <select defaultValue={localStorage.getItem("i18nextLng")} className="form-select form-select-dark" onChange={handleChange}>
-                        {
-                            languagesList.map((lang, idx) => <option key={idx} value={lang.abbr}>{ lang.name }</option>)
-                        }
-                    </select>
+                    <LanguageSelect />
                 </div>
             </div>
         </div>

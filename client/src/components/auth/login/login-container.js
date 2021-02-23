@@ -1,6 +1,7 @@
 // Dependencies
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 // Actions
 import { userLogin, userGoogleLogin } from "../../../actions/auth";
@@ -8,9 +9,10 @@ import { userLogin, userGoogleLogin } from "../../../actions/auth";
 // Components
 import Login from "./login";
 
-const LoginHOC = ({ userLogin, userGoogleLogin, isAuthenticated, history }) => {
+const LoginContainer = ({ userLogin, userGoogleLogin, isAuthenticated, history }) => {
 
   const [user, setUser] = useState({ email: "", password: "" });
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -37,7 +39,8 @@ const LoginHOC = ({ userLogin, userGoogleLogin, isAuthenticated, history }) => {
       password={user.password}
       onSubmit={onSubmit}
       onChange={onChange}
-      handleLogin={handleLogin} />
+      handleLogin={handleLogin}
+      t={t} />
   );
 }
 
@@ -55,4 +58,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginHOC);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);

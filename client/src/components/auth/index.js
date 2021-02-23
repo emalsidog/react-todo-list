@@ -1,7 +1,7 @@
-import LoginHOC from "./login/login-hoc";
-import RegisterHOC from "./register/register-hoc";
+import LoginContainer from "./login/login-container";
+import RegisterContainer from "./register/register-container";
 
 export {
-  LoginHOC, 
-  RegisterHOC
+  LoginContainer, 
+  RegisterContainer
 }

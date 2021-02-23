@@ -15,16 +15,16 @@
   }
 }
 
-.ui-form {
+.ui_form {
   max-width: 350px;
-  padding: 80px 30px 30px;
-  margin: 20px auto;
+  padding: 50px 30px 30px;
+  margin: 20px auto 10px auto;
   background: #2b2e30;
 
   h3 {
     position: relative;
     z-index: 5;
-    margin: 0 0 30px;
+    margin: 0 0 40px;
     text-align: center;
     color: #4a90e2;
     font-size: 30px;
@@ -45,7 +45,7 @@
   }
 }
 
-.form-row {
+.form_row {
   position: relative;
   margin-bottom: 40px;
   input {
@@ -84,10 +84,10 @@
   }
 }
 
-.ui-form-2 {
+.ui_form_2 {
   max-width: 350px;
   padding: 20px;
-  margin: 20px auto;
+  margin: 5px auto;
   background: #2b2e30;
   color: #FFFFFF;
   text-align: center;
@@ -101,12 +101,21 @@
   }
 }
 
+.error_message {
+  color: rgb(253, 85, 85);
+  font-size: 13px;
+  margin: 3px 0 0 0;
+  padding: 0;
+}
+
+
+
 @media screen and (max-width: 900px) {
-  .ui-form {
+  .ui_form {
     background: #35363A;
     margin: 0 auto;
   }
-  .ui-form-2 {
+  .ui_form_2 {
     background: #35363A;
     padding: 0;
     margin: 5px auto;

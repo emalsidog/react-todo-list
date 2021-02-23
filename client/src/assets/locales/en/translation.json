@@ -17,5 +17,16 @@
     "Russian": "Russian",
     "English": "English",
     "All's done": "All's done",
-    "more to do": "more to do"
+    "more to do": "more to do",
+    "Given name": "Given name",
+    "Family name": "Family name",
+    "Email": "Email",
+    "Password": "Password",
+    "Confirm password": "Confirm password",
+    "Register": "Register",
+    "Already have an account?": "Already have an account?",
+    "Log In": "Log In",
+    "Log In with Google": "Log In with Google",
+    "Do not have an account?": "Do not have an account?",
+    "OR": "OR"
 }
