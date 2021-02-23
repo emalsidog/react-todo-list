@@ -28,5 +28,13 @@
     "Log In": "Log In",
     "Log In with Google": "Log In with Google",
     "Do not have an account?": "Do not have an account?",
-    "OR": "OR"
+    "OR": "OR",
+    "Given name must be between 2 and 15 characters long": "Given name must be between 2 and 15 characters long",
+    "Given name must be only letters": "Given name must be only letters",
+    "Family name must be between 2 and 15 characters long": "Family name must be between 2 and 15 characters long",
+    "Family name must be only letters": "Family name must be only letters",
+    "Email is not valid": "Email is not valid",
+    "Password must be between 6 and 15 characters long": "Password must be between 6 and 15 characters long",
+    "Password must be only letters and numbers": "Password must be only letters and numbers",
+    "Passwords do not match": "Passwords do not match"
 }

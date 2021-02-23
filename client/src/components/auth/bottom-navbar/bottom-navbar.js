@@ -9,8 +9,8 @@ import styles from "./bottom-navbar.module.scss";
 
 const BottomNavbar = () => {
     return (
-        <nav className={`navbar fixed-bottom navbar-dark ${styles.bottom_navbar}`}>
-            <LanguageSelect appearance={false} />
+        <nav className={`navbar fixed-top navbar-dark ${styles.bottom_navbar}`}>
+            <LanguageSelect authPage={true} />
         </nav>
     )
 }

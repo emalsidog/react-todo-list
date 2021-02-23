@@ -28,5 +28,13 @@
     "Log In": "Войти",
     "Log In with Google": "Войти с помощью Google",
     "Do not have an account?": "Не зарегестрированы?",
-    "OR": "Или"
+    "OR": "Или",
+    "Given name must be between 2 and 15 characters long": "Имя должно быть от 2 до 15 символов",
+    "Given name must be only letters": "Имя должно состоять только из букв",
+    "Family name must be between 2 and 15 characters long": "Фамилия должна быть от 2 до 15 символов",
+    "Family name must be only letters": "Фамилия должна состоять только из букв",
+    "Email is not valid": "Email не является допустимым",
+    "Password must be between 6 and 15 characters long": "Фамилия должна быть от 2 до 15 символов",
+    "Password must be only letters and numbers": "Пароль должен состоять только из букв и цифр",
+    "Passwords do not match": "Пароли не соответствуют"
 }

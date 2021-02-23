@@ -5,14 +5,14 @@ import { useTranslation } from "react-i18next";
 // Styles
 import styles from "./language-select.module.scss";
 
-const LanguageSelect = ({ appearance }) => {
+const LanguageSelect = ({ authPage }) => {
     const { t, i18n } = useTranslation();
 
     const languagesList = [{ abbr: "en", name: t("English") }, { abbr: "ru", name: t("Russian") }];
     let classNames = `${styles.form_select} ${styles.form_select_dark}`;
 
-    if(!appearance) {
-        classNames += ` ${styles.appearance_none}`;
+    if(authPage) {
+        classNames += ` ${styles.auth_lang_select}`
     }
 
     const handleChange = e => {

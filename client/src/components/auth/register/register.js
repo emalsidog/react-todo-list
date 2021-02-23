@@ -22,27 +22,27 @@ const Register = props => {
           <div className={styles.form_row}>
             <input autoComplete="off" id="givenName" required value={givenName} name="givenName" type="text" onChange={onChange} />
             <label htmlFor="givenName">{t("Given name")}</label>
-            <div className={styles.error_message}>{givenNameError}</div>
+            <div className={styles.error_message}>{t(givenNameError)}</div>
           </div>
           <div className={styles.form_row}>
             <input autoComplete="off" id="familyName" required value={familyName} name="familyName" type="text" onChange={onChange} />
             <label htmlFor="familyName">{t("Family name")}</label>
-            <div className={styles.error_message}>{familyNameError}</div>
+            <div className={styles.error_message}>{t(familyNameError)}</div>
           </div>
           <div className={styles.form_row}>
             <input autoComplete="off" id="email" required value={email} name="email" type="text" onChange={onChange} />  
             <label htmlFor="email">{t("Email")}</label>
-            <div className={styles.error_message}>{emailError}</div>
+            <div className={styles.error_message}>{t(emailError)}</div>
           </div>
           <div className={styles.form_row}>
             <input autoComplete="off" id="password" required value={password} name="password" type="password" onChange={onChange} />  
             <label htmlFor="password">{t("Password")}</label>
-            <div className={styles.error_message}>{passwordError}</div>
+            <div className={styles.error_message}>{t(passwordError)}</div>
           </div>
           <div className={styles.form_row}>
             <input autoComplete="off" id="passwordConfirm" required value={passwordConfirm} name="passwordConfirm" type="password" onChange={onChange} />  
             <label htmlFor="passwordConfirm">{t("Confirm password")}</label>
-            <div className={styles.error_message}>{passwordConfirmError}</div>
+            <div className={styles.error_message}>{t(passwordConfirmError)}</div>
           </div>
           <p>
             <input type="submit" value={t("Register")} />

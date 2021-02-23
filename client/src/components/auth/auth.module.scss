@@ -18,7 +18,7 @@
 .ui_form {
   max-width: 350px;
   padding: 50px 30px 30px;
-  margin: 20px auto 10px auto;
+  margin: 80px auto 10px auto;
   background: #2b2e30;
 
   h3 {
@@ -108,12 +108,11 @@
   padding: 0;
 }
 
-
-
 @media screen and (max-width: 900px) {
   .ui_form {
     background: #35363A;
-    margin: 0 auto;
+    margin: 35px auto;
+    padding-bottom: 0;
   }
   .ui_form_2 {
     background: #35363A;
