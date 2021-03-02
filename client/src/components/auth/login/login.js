@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 
 // Components
-import BottomNavbar from "../bottom-navbar";
+import TopNavbar from "../top-navbar";
 
 // Styles
 import styles from "../auth.module.scss";
@@ -17,6 +17,7 @@ const Login = (props) => {
     <Helmet>
       <title>Todoist | {t("Log In")}</title>
     </Helmet>
+      <TopNavbar />
       <form onSubmit={onSubmit} className={styles.ui_form}>
         <h3>{t("Log In")}</h3>
 
@@ -49,7 +50,6 @@ const Login = (props) => {
       <div className={styles.ui_form_2}>
         <span>{t("Do not have an account?")} <Link to="/accounts/register">{t("Register")}</Link></span>
       </div>
-      <BottomNavbar />
     </>
   );
 };

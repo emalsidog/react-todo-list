@@ -4,20 +4,20 @@ import { connect } from "react-redux";
 import { useTranslation } from "react-i18next";
 
 // Actions
-import { userRegister } from "../../../actions/auth";
+import { userRegister, isLoading } from "../../../actions/auth";
 
 // Components
 import Register from "./register";
 
 // Regexp
-const emailRexexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const emailRexexp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const nameRexexp = /^[a-zA-Zа-яёА-ЯЁ]+$/;
 const passwordRexexp = /^[0-9A-Za-z-_]+$/;
 
-const RegisterContainer = ({ userRegister, history, serverResponseMessage, isLoaded }) => {
+const RegisterContainer = ({ userRegister, history, serverResponseMessage, isLoading, isLoadingAC }) => {
 
   const { t } = useTranslation();
-  const { isError, message } = serverResponseMessage;
+  const { isError } = serverResponseMessage;
 
   const [userRegisterData, setUserRegisterData] = useState({
     givenName: "",
@@ -32,6 +32,17 @@ const RegisterContainer = ({ userRegister, history, serverResponseMessage, isLoa
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [passwordConfirmError, setPasswordConfirmError] = useState("");
+
+  useEffect(() => {
+    isLoadingAC()
+    if(isLoading) return;
+
+    if(!isError) {
+      setTimeout(() => {
+        history.push("/accounts/login")
+      }, 2000)
+    }
+  }, [ isLoading, isError, history, isLoadingAC ])
 
   const validate = () => {
     let givenNameError = "";
@@ -109,42 +120,36 @@ const RegisterContainer = ({ userRegister, history, serverResponseMessage, isLoa
     }
   }
 
-  useEffect(() => {
-
-    if(!isLoaded) {
-      return;
-    }
-
-    if(!isError) {
-      console.log(`${message}. Redirecting...`);
-      setTimeout(() => {
-        history.push("/accounts/login")
-      }, 2000)
-    } else {
-      console.log(message);
-    }
-  }, [ isLoaded, isError, message, history ])
-
   const onChange = (e) => {
     setUserRegisterData({ ...userRegisterData, [e.target.name]: e.target.value })
   }
 
   return (
-    <Register onSubmit={onSubmit} onChange={onChange} user={userRegister} givenNameError={givenNameError} familyNameError={familyNameError} emailError={emailError} passwordError={passwordError} passwordConfirmError={passwordConfirmError} t={t} />
+    <Register 
+      onSubmit={onSubmit} 
+      onChange={onChange} 
+      user={userRegister} 
+      givenNameError={givenNameError} 
+      familyNameError={familyNameError} 
+      emailError={emailError} 
+      passwordError={passwordError} 
+      passwordConfirmError={passwordConfirmError}
+      serverResponseMessage={serverResponseMessage}
+      t={t} />
   );
 }
 
 const mapStateToProps = state => {
-  const { serverResponseMessage, isLoaded } = state.auth;
-  console.log(state.auth);
+  const { serverResponseMessage, isLoading } = state.auth;
   return {
-    serverResponseMessage, isLoaded
+    serverResponseMessage, isLoading
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    userRegister: (user) => dispatch(userRegister(user))
+    userRegister: (user) => dispatch(userRegister(user)),
+    isLoadingAC: () => dispatch(isLoading())
   }
 }
 

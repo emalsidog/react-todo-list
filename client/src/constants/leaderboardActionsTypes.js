@@ -1,1 +1,2 @@
 export const GET_LEADERBOARD = "GET_LEADERBOARD";
+export const IS_LOADING = "IS_LOADING";

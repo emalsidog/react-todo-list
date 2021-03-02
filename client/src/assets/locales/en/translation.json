@@ -36,5 +36,8 @@
     "Email is not valid": "Email is not valid",
     "Password must be between 6 and 15 characters long": "Password must be between 6 and 15 characters long",
     "Password must be only letters and numbers and special characters (-, _)": "Password must be only letters and numbers and special characters (-, _)",
-    "Passwords do not match": "Passwords do not match"
+    "Passwords do not match": "Passwords do not match",
+    "Email is already registered": "Email is already registered",
+    "Your account has been successfully created. Redirecting to log in page...": "Your account has been successfully created. Redirecting to log in page...",
+    "Something went wrong... Please, try again later": "Something went wrong... Please, try again later"
 }

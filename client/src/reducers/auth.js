@@ -6,7 +6,7 @@ import {
   USER_REGISTER_FAILURE,
   USER_GOOGLE_LOGIN,
   USER_LOGOUT,
-  IS_LOADED } from "../constants/authActionTypes";
+  IS_LOADING } from "../constants/authActionTypes";
 
 const initialState = {
   user: null,
@@ -15,44 +15,46 @@ const initialState = {
     isError: null,
     message: null
   },
-  isLoaded: false
+  isLoading: true
 }
 
 const auth = (state = initialState, action) => {
   switch(action.type) {
     case SET_CURRENT_USER:
-      return { ...state, ...action.payload, isLoaded: false }
+      return { ...state, ...action.payload, isLoading: true }
     case USER_LOGIN_SUCCESS: {
       const { isAuthenticated, user } = action.payload;
-      return { ...state, isAuthenticated, user, isLoaded: true }
+      return { ...state, isAuthenticated, user, isLoading: false }
     }
     case USER_LOGIN_FAILURE:
       return {
         ...state,
         user: null,
         isAuthenticated: false,
-        isLoaded: true
+        isLoading: false
       }
-    case USER_REGISTER_SUCCESS:
+    case USER_REGISTER_SUCCESS: {
+      return { ...state, serverResponseMessage: action.payload, isLoading: false }
+    }
     case USER_REGISTER_FAILURE:
-      return { ...state, serverResponseMessage: action.payload, isLoaded: true };
+      return { ...state, serverResponseMessage: action.payload, isLoading: false };
     case USER_GOOGLE_LOGIN:
       const { isAuthenticated, user } = action.payload;
       return {
         ...state,
         isAuthenticated,
         user,
-        isLoaded: true
+        isLoading: false
       };
     case USER_LOGOUT:
       return {
         ...state,
         user: null,
         isAuthenticated: false,
-        isLoaded: true
+        isLoading: true
       }
-    case IS_LOADED: {
-      return { ...state, isLoaded: false }
+    case IS_LOADING: {
+      return { ...state, isLoading: true }
     }
     default: 
       return state;

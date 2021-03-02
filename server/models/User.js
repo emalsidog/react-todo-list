@@ -31,7 +31,7 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     default: 0
   },
-  todos: [{ type: mongoose.Schema.Types.ObjectId, ref: "Todo" }],
+  folders: [{ type: mongoose.Schema.Types.ObjectId, ref: "Folder" }],
   registrationDate: {
     type: Date,
     default: new Date()

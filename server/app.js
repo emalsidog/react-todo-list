@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 // Models
 const Todo = require("./models/Todo");
 const User = require("./models/User");
+const Folder = require("./models/Folder");
 
 // App
 const app = express();
@@ -17,6 +18,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 // Routes
+app.use("/", require("./routes/folder"));
 app.use("/accounts", require("./routes/auth"));
 app.use("/todos", require("./routes/todo"));
 app.use("/leaderboard", require("./routes/leaderboard"));

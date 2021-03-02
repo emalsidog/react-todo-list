@@ -1,10 +1,12 @@
 import {
-    GET_LEADERBOARD
+    GET_LEADERBOARD,
+    IS_LOADING
 } from "../constants/leaderboardActionsTypes";
 
 const initialState = {
     accounts: [],
-    currentUserPosition: null
+    currentUserPosition: null,
+    isLoading: false
 }
 
 const leaderboard = (state = initialState, action) => {
@@ -12,9 +14,13 @@ const leaderboard = (state = initialState, action) => {
         case GET_LEADERBOARD: {
             const { accounts, currentUserPosition } = action.payload;
             return {
+                isLoading: false,
                 accounts,
                 currentUserPosition
             }
+        }
+        case IS_LOADING: {
+            return { ...state, isLoading: true }
         }
         default: {
             return state;

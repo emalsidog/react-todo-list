@@ -5,22 +5,28 @@ import { connect } from "react-redux";
 import { useTranslation } from "react-i18next"; 
 
 // Actions
-import { getLeaderboard } from "../../actions/leaderboard";
+import { getLeaderboard, isLoading } from "../../actions/leaderboard";
 
 // Styles
 import "./leaderboard.scss";
 
 // Components
 import LeaderboardItem from "../leaderboard-item";
+import Spinner from "../spinner";
 
-const Leaderboard = ({ accounts, getLeaderboard, currentUserPosition }) => {
+const Leaderboard = ({ accounts, getLeaderboard, currentUserPosition, isLoading, isLoadingAC }) => {
 
     const { t } = useTranslation();
 
     useEffect(() => {
+        isLoadingAC()
         getLeaderboard()
-    }, [getLeaderboard])
+    }, [getLeaderboard, isLoadingAC])
     
+    if(isLoading) {
+        return <Spinner />
+    }
+
     return (
         <>
             <Helmet>
@@ -68,13 +74,14 @@ const Leaderboard = ({ accounts, getLeaderboard, currentUserPosition }) => {
 }
 
 const mapStateToProps = state => {
-    const { accounts, currentUserPosition } = state.leaderboard;
-    return { accounts, currentUserPosition }
+    const { accounts, currentUserPosition, isLoading } = state.leaderboard;
+    return { accounts, currentUserPosition, isLoading }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        getLeaderboard: () => dispatch(getLeaderboard())
+        getLeaderboard: () => dispatch(getLeaderboard()),
+        isLoadingAC: () => dispatch(isLoading())
     }
 }
 

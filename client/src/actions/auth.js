@@ -6,7 +6,7 @@ import {
   USER_REGISTER_FAILURE,
   USER_GOOGLE_LOGIN,
   USER_LOGOUT,
-  IS_LOADED } from "../constants/authActionTypes";
+  IS_LOADING } from "../constants/authActionTypes";
 
 export const setCurrentUser = () => {
   return async (dispatch) => {
@@ -82,7 +82,7 @@ export const userLogout = () => {
 export const userRegister = (user) => {
   return async dispatch => {
     try {
-      dispatch({ type: IS_LOADED });
+      dispatch({ type: IS_LOADING });
       const response = await fetch("/accounts/register", {
         method: "POST",
         body: JSON.stringify(user),
@@ -125,5 +125,11 @@ export const userGoogleLogin = googleData => {
       type: USER_GOOGLE_LOGIN,
       payload: json.body
     });
+  }
+}
+
+export const isLoading = () => {
+  return dispatch => {
+    dispatch({ type: IS_LOADING })
   }
 }

@@ -4,19 +4,32 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 
 // Components
-import BottomNavbar from "../bottom-navbar";
+import TopNavbar from "../top-navbar";
+import Alert from "../../alert";
 
 // Styles
 import styles from "../auth.module.scss";
 
 const Register = props => {
-  const { onSubmit, onChange, user, givenNameError, familyNameError, emailError, passwordError, passwordConfirmError, t } = props
+  const { 
+    onSubmit, 
+    onChange, 
+    user, 
+    givenNameError, 
+    familyNameError, 
+    emailError, 
+    passwordError, 
+    passwordConfirmError, 
+    serverResponseMessage, 
+    t } = props
   const { givenName, familyName, email, password, passwordConfirm } = user;
+  const { isError, message } = serverResponseMessage;
   return (
     <>
       <Helmet>
         <title>Todoist | {t("Register")}</title>
       </Helmet>
+      <TopNavbar />
       <form onSubmit={onSubmit} className={styles.ui_form}>
         <h3>{t("Register")}</h3>
           <div className={styles.form_row}>
@@ -52,7 +65,10 @@ const Register = props => {
         <span>{t("Already have an account?")} <Link to="/accounts/login">{t("Log In")}</Link></span>
       </div>
 
-      <BottomNavbar />
+      {
+        message ? <Alert isError={isError} message={message} t={t} /> : null
+      }
+
     </>
   );
 }

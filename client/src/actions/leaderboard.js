@@ -1,5 +1,6 @@
 import {
-    GET_LEADERBOARD
+    GET_LEADERBOARD,
+    IS_LOADING
 } from "../constants/leaderboardActionsTypes";
 
 export const getLeaderboard = () => {
@@ -16,3 +17,5 @@ export const getLeaderboard = () => {
         });
     }
 }
+
+export const isLoading = () => ({ type: IS_LOADING });

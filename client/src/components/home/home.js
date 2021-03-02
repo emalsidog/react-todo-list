@@ -16,6 +16,7 @@ import TodoList from "../todo-list";
 const Home = ({ addTodo, todos }) => {
 
   const [inputValue, setInputValue] = useState("");
+  const [isDisabled, setIsDisabled] = useState(true);
   const { t } = useTranslation();
 
   const onSubmit = e => {
@@ -28,6 +29,7 @@ const Home = ({ addTodo, todos }) => {
 
   const onInputChange = e => {
     setInputValue(e.target.value);
+    e.target.value === "" ? setIsDisabled(true) : setIsDisabled(false);
   }
 
   let unfinishedTodos = todos.filter(({ isCompleted }) => !isCompleted);
@@ -44,7 +46,7 @@ const Home = ({ addTodo, todos }) => {
           
           <form onSubmit={onSubmit} className="input-group">
             <input value={inputValue} onChange={onInputChange} type="text" className="form-control" placeholder={t("Todo")} />
-            <button className="btn btn-outline-secondary" type="submit">{t("Add todo")}</button>
+            <button className="btn btn-outline-secondary" type="submit" disabled={isDisabled}>{t("Add todo")}</button>
           </form>
         </div>
       </div>
