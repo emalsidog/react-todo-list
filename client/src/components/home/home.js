@@ -12,6 +12,7 @@ import "./home.scss";
 
 // Components
 import TodoList from "../todo-list";
+import FolderList from "../folder-list";
 
 const Home = ({ addTodo, todos }) => {
 
@@ -36,7 +37,10 @@ const Home = ({ addTodo, todos }) => {
 
   return (
     <>
-      <Helmet>
+      <div className="container">
+        <FolderList />
+      </div>
+      {/* <Helmet>
         <title>Todoist | {unfinishedTodos.length === 0 ? t("All's done") : `${unfinishedTodos.length} ${t("more to do")}`}</title>
       </Helmet>
       
@@ -49,7 +53,7 @@ const Home = ({ addTodo, todos }) => {
             <button className="btn btn-outline-secondary" type="submit" disabled={isDisabled}>{t("Add todo")}</button>
           </form>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

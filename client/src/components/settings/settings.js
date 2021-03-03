@@ -19,17 +19,17 @@ const Settings = () => {
                 <title>Todoist | {t("Settings")}</title>
             </Helmet>
             <div className="container">
-            <h4>{t("Settings")}</h4>
+                <h4>{t("Settings")}</h4>
 
-            <div className="row my-4 settings-row">
-                <div className="col-12 col-md-12 col-sm-12 col-xs-12 col-lg setting-name">
-                    {t("Language")}
-                </div>
-                <div className="col-auto me-auto"> 
-                    <LanguageSelect />
+                <div className="row my-4 settings-row">
+                    <div className="col-12 col-md-12 col-sm-12 col-xs-12 col-lg setting-name">
+                        {t("Language")}
+                    </div>
+                    <div className="col-auto me-auto"> 
+                        <LanguageSelect />
+                    </div>
                 </div>
             </div>
-        </div>
         </>
     );
 }

@@ -1,0 +1,20 @@
+.folderContainer {
+  color: #FFFFFF;
+  padding: 15px 10px;
+  margin: 10px 0;
+  border-bottom: 1px solid #555555;
+
+  div {
+    margin-right: 10px;
+  }
+  i {
+    font-size: 20px;
+  }
+}
+
+.folderContainer:hover {
+  background: rgb(255,255,255);
+  background: linear-gradient(0deg, rgba(255,255,255,0.20) 0%, rgba(53,54,58,1) 50%);
+
+  border-color: rgba(58,62,68,1)
+}

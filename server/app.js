@@ -2,6 +2,7 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 // Models
 const Todo = require("./models/Todo");
@@ -10,6 +11,9 @@ const Folder = require("./models/Folder");
 
 // App
 const app = express();
+
+// CORS
+app.use(cors());
 
 // Cookie parser
 app.use(cookieParser());
@@ -20,7 +24,6 @@ app.use(express.json());
 // Routes
 app.use("/", require("./routes/folder"));
 app.use("/accounts", require("./routes/auth"));
-app.use("/todos", require("./routes/todo"));
 app.use("/leaderboard", require("./routes/leaderboard"));
 
 // MongoDB connection

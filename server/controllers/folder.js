@@ -35,9 +35,17 @@ exports.postCreateFolder = async (req, res) => {
     await folder.save();
     req.user.folders.push(folder);
     await req.user.save();
+
+    const { folders } = await User.findOne({ _id: req.user._id })
+      .populate("folders")
+      .exec();
+
     res.status(200).json({
       isError: false,
       message: "Folder created.",
+      body: {
+        folders
+      },
     });
   } catch (error) {
     console.error(error);
@@ -51,14 +59,16 @@ exports.postCreateFolder = async (req, res) => {
 // GET => /delete-folder
 exports.getDeleteFolder = async (req, res) => {
   const folderId = req.params.id;
-  req.user.folders = req.user.folders.filter(({ _id }) => _id.toString() !== folderId.toString());
+  req.user.folders = req.user.folders.filter(
+    ({ _id }) => _id.toString() !== folderId.toString()
+  );
   try {
     await req.user.save();
     await Folder.findOneAndDelete({ _id: folderId });
 
     res.status(200).json({
       isError: false,
-      message: "Operation successfull."
+      message: "Operation successfull.",
     });
   } catch (error) {
     console.error(error);
@@ -67,7 +77,7 @@ exports.getDeleteFolder = async (req, res) => {
       message: "Something went wrong...",
     });
   }
-}
+};
 
 // GET => /:id
 exports.getTodos = async (req, res) => {

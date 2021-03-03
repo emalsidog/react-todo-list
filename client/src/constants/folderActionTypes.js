@@ -1,0 +1,2 @@
+export const GET_FOLDERS = "GET_FOLDERS";
+export const CREATE_FOLDER = "CREATE_FOLDER";
