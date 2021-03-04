@@ -13,6 +13,7 @@ import "./home.scss";
 // Components
 import TodoList from "../todo-list";
 import FolderList from "../folder-list";
+import CreateFolder from "../create-folder";
 
 const Home = ({ addTodo, todos }) => {
 
@@ -37,8 +38,13 @@ const Home = ({ addTodo, todos }) => {
 
   return (
     <>
+      <Helmet>
+        <title>Todoist | Your folders</title>
+      </Helmet>
+
       <div className="container">
         <FolderList />
+        <CreateFolder />
       </div>
       {/* <Helmet>
         <title>Todoist | {unfinishedTodos.length === 0 ? t("All's done") : `${unfinishedTodos.length} ${t("more to do")}`}</title>
