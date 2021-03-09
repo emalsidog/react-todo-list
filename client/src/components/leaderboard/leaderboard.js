@@ -1,11 +1,11 @@
 // Dependencies
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next"; 
 
 // Actions
-import { getLeaderboard, isLoading } from "../../actions/leaderboard";
+import { getLeaderboard } from "../../actions/leaderboard";
 
 // Styles
 import "./leaderboard.scss";
@@ -14,17 +14,46 @@ import "./leaderboard.scss";
 import LeaderboardItem from "../leaderboard-item";
 import Spinner from "../spinner";
 
-const Leaderboard = ({ accounts, getLeaderboard, currentUserPosition, isLoading, isLoadingAC }) => {
-
+const Leaderboard = () => {
+    const dispatch = useDispatch();
+    const { accounts, currentUserPosition, isLoading } = useSelector(store => store.leaderboard);
     const { t } = useTranslation();
 
     useEffect(() => {
-        isLoadingAC()
-        getLeaderboard()
-    }, [getLeaderboard, isLoadingAC])
+        dispatch(getLeaderboard())
+    }, [dispatch])
     
+
+    let main;
     if(isLoading) {
-        return <Spinner />
+        main = <div className="text-center"><Spinner /></div>
+    } else {
+        main = (
+            <table className="table-container">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">{t("Name")}</th>
+                        <th scope="col">{t("Points")}</th>
+                        <th scope="col">{t("Todos")}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        accounts.map((account, idx) => {
+                            const { givenName, familyName, points, totalCompletedTodos, _id } = account;
+                            return <LeaderboardItem 
+                                        key={_id}
+                                        position={idx + 1}
+                                        givenName={givenName}
+                                        familyName={familyName}
+                                        points={points}
+                                        totalCompletedTodos={totalCompletedTodos} />
+                        })
+                    }
+                </tbody>
+            </table>
+        )
     }
 
     return (
@@ -43,46 +72,13 @@ const Leaderboard = ({ accounts, getLeaderboard, currentUserPosition, isLoading,
                     </div>
                 </div>
                 <div>
-                    <table className="table-container">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">{t("Name")}</th>
-                                <th scope="col">{t("Points")}</th>
-                                <th scope="col">{t("Todos")}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                accounts.map((account, idx) => {
-                                    const { givenName, familyName, points, totalCompletedTodos, _id } = account;
-                                    return <LeaderboardItem 
-                                                key={_id}
-                                                position={idx + 1}
-                                                givenName={givenName}
-                                                familyName={familyName}
-                                                points={points}
-                                                totalCompletedTodos={totalCompletedTodos} />
-                                })
-                            }
-                        </tbody>
-                    </table>
+                    {
+                        main
+                    }
                 </div>
             </div>
         </>
     );
 }
 
-const mapStateToProps = state => {
-    const { accounts, currentUserPosition, isLoading } = state.leaderboard;
-    return { accounts, currentUserPosition, isLoading }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        getLeaderboard: () => dispatch(getLeaderboard()),
-        isLoadingAC: () => dispatch(isLoading())
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Leaderboard);
+export default Leaderboard;

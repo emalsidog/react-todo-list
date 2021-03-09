@@ -1,91 +1,111 @@
-import {
-    GET_TODOS,
-    DELETE_TODO,
-    DONE_TODO,
-    IMPORTANT_TODO
-} from "../constants/todoActionTypes";
+// Actions
+import * as types from "../constants/todoActionTypes";
 
-export const getTodos = () => {
+// Service
+import TodoService from "../services/todos";
+const todoService = new TodoService();
+
+export const getTodos = (folderId) => {
     return async dispatch => {
-        const response = await fetch("/todos", {
-            headers: {
-              'Authorization': 'Bearer ' + localStorage.getItem("token")
-            }
-          });
-        const json = await response.json();
-        dispatch({ 
-            type: GET_TODOS, 
-            payload: json.body.todos 
-        });
+        dispatch({ type: types.GET_TODOS_REQUEST });
+        const response = await todoService.getTodos(folderId);
+
+        if(!response.isError) {
+            dispatch({ 
+                type: types.GET_TODOS_SUCCESS, 
+                payload: response.body.todos 
+            })
+        } else {
+            dispatch({
+                type: types.GET_TODOS_FAILURE,
+                payload: {
+                    isError: response.isError,
+                    message: response.message
+                }
+            })
+        }
     }
 }
 
-export const addTodo = todo => {
+export const addTodo = todoData => {
     return async dispatch => {
-        const response = await fetch("/todos/add-todo", {
-            method: "POST",
-            headers: {
-              'Authorization': 'Bearer ' + localStorage.getItem("token"),
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(todo),
-        });
-        const json = await response.json();
-        
-        dispatch({
-            type: GET_TODOS,
-            payload: json.body.todos
-        });
+
+        const _id = Math.floor(Math.random() * (999999 - 100000) + 100000);    
+        const fakeTodo = {
+          _id,
+          content: todoData.content,
+          isCompleted: false,
+          isImportant: false
+        }
+    
+        dispatch({ type: types.ADD_TODO_REQUEST, payload: fakeTodo });
+        const response = await todoService.addTodo(todoData);
+        if(!response.isError) {
+            dispatch({ 
+                type: types.ADD_TODO_SUCCESS, 
+                payload: { 
+                    newTodo: response.body.todo, 
+                    fakeTodo
+                } 
+            });
+        } else {
+            dispatch({ 
+                type: types.ADD_TODO_FAILURE, 
+                payload: { 
+                    message: response.message 
+                } 
+            })
+        }
     }
 }
 
-export const deleteTodo = id => {
+export const deleteTodo = todoData => {
     return async dispatch => {
-        dispatch({
-            type: DELETE_TODO,
-            payload: id
-        });
-        await fetch("/todos/delete-todo", {
-            method: "POST",
-            headers: {
-              'Authorization': 'Bearer ' + localStorage.getItem("token"),
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ id }),
-        }); 
-    }
+        dispatch({ type: types.DELETE_TODO_REQUEST, payload: todoData.todoId });
+        const response = await todoService.deleteTodo(todoData);
+        if(!response.isError) {
+            dispatch({ 
+                type: types.DELETE_TODO_SUCCESS,
+            });
+        } else {
+            dispatch({
+                type: types.DELETE_TODO_FAILURE,
+                payload: response.message
+            });
+        }
+    }   
 }
 
-export const doneTodo = id => {
+export const doneTodo = todoData => {
     return async dispatch => {
-        dispatch({
-            type: DONE_TODO,
-            payload: id
-        });
-        await fetch("/todos/done-todo", {
-            method: "POST",
-            headers: {
-              'Authorization': 'Bearer ' + localStorage.getItem("token"),
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ id }),
-        });
+        dispatch({ type: types.DONE_TODO_REQUEST, payload: todoData.todoId });
+        const response = await todoService.doneTodo(todoData);
+        if(!response.isError) {
+            dispatch({
+                type: types.DONE_TODO_SUCCESS
+            })
+        } else {
+            dispatch({
+                type: types.DONE_TODO_FAILURE,
+                payload: response.message
+            })
+        }
     } 
 }
 
-export const importantTodo = id => {
+export const importantTodo = todoData => {
     return async dispatch => {
-        dispatch({
-            type: IMPORTANT_TODO,
-            payload: id
-        });
-        await fetch("/todos/important-todo", {
-            method: "POST",
-            headers: {
-              'Authorization': 'Bearer ' + localStorage.getItem("token"),
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ id }),
-        });
-    }
+        dispatch({ type: types.IMPORTANT_TODO_REQUEST, payload: todoData.todoId });
+        const response = await todoService.importantTodo(todoData);
+        if(!response.isError) {
+            dispatch({
+                type: types.IMPORTANT_TODO_SUCCESS
+            })
+        } else {
+            dispatch({
+                type: types.IMPORTANT_TODO_FAILURE,
+                payload: response.message
+            })
+        }
+    } 
 }

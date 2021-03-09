@@ -1,26 +1,42 @@
-import {
-    GET_LEADERBOARD,
-    IS_LOADING
-} from "../constants/leaderboardActionsTypes";
+// Constants
+import * as types from "../constants/leaderboardActionsTypes";
 
 const initialState = {
     accounts: [],
     currentUserPosition: null,
-    isLoading: false
+    isLoading: false,
+    error: {
+        isError: false,
+        message: ""
+    }
 }
 
 const leaderboard = (state = initialState, action) => {
     switch(action.type) {
-        case GET_LEADERBOARD: {
+        case types.GET_LEADERBOARD_REQUEST: {
+            return {
+                ...state,
+                isLoading: true
+            }
+        }
+        case types.GET_LEADERBOARD_SUCCESS: {
             const { accounts, currentUserPosition } = action.payload;
             return {
+                ...state,
                 isLoading: false,
                 accounts,
                 currentUserPosition
             }
         }
-        case IS_LOADING: {
-            return { ...state, isLoading: true }
+        case types.GET_LEADERBOARD_FAILURE: {
+            return {
+                ...state,
+                isLoading: false,
+                error: {
+                    isError: true,
+                    message: action.payload
+                }
+            }
         }
         default: {
             return state;

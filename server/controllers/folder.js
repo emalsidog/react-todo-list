@@ -36,15 +36,11 @@ exports.postCreateFolder = async (req, res) => {
     req.user.folders.push(folder);
     await req.user.save();
 
-    const { folders } = await User.findOne({ _id: req.user._id })
-      .populate("folders")
-      .exec();
-
     res.status(200).json({
       isError: false,
       message: "Folder created.",
       body: {
-        folders
+        folder
       },
     });
   } catch (error) {
@@ -134,6 +130,9 @@ exports.postAddTodo = async (req, res) => {
     res.status(200).json({
       isError: false,
       message: "Successfully added todo.",
+      body: {
+        todo
+      }
     });
   } catch (error) {
     console.error(error);

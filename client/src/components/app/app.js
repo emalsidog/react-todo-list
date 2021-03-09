@@ -1,7 +1,7 @@
 // Dependencies
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { Switch } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 // Actions
 import { setCurrentUser } from "../../actions/auth";
@@ -14,6 +14,7 @@ import Home from "../home";
 import Leaderboard from "../leaderboard";
 import About from "../about";
 import Settings from "../settings";
+import TodoMenu from "../todo-menu";
 
 // Styles
 import "./app.scss";
@@ -32,6 +33,8 @@ const App = ({ setCurrentUser }) => {
         <ProtectedRoute exact path="/settings" component={Settings} />
         <UnprotectedRoute exact path="/accounts/login" component={LoginContainer} />
         <UnprotectedRoute exact path="/accounts/register" component={RegisterContainer} />
+        <ProtectedRoute exact path="/:id" component={TodoMenu} />
+        <Route render={() => <h1>404</h1>} />
       </Switch>
     </>
   );

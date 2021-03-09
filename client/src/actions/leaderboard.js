@@ -1,21 +1,29 @@
-import {
-    GET_LEADERBOARD,
-    IS_LOADING
-} from "../constants/leaderboardActionsTypes";
+// Constants
+import * as types from "../constants/leaderboardActionsTypes";
+
+// Leaderboard service
+import LeaderboardService from "../services/leaderboard";
+const leaderboardService = new LeaderboardService();
 
 export const getLeaderboard = () => {
     return async dispatch => {
-        const response = await fetch("/leaderboard", {
-            headers: {
-              'Authorization': 'Bearer ' + localStorage.getItem("token")
-            }
-        });
-        const json = await response.json();
-        dispatch({
-            type: GET_LEADERBOARD,
-            payload: json.body
-        });
+        dispatch({ type: types.GET_LEADERBOARD_REQUEST });
+        const response = await leaderboardService.getLeaderboard();
+        if(!response.isError) {
+            dispatch({ 
+                type: types.GET_LEADERBOARD_SUCCESS,
+                payload: {
+                    accounts: response.body.accounts,
+                    currentUserPosition: response.body.currentUserPosition
+                }
+            })
+        } else {
+            dispatch({
+                type: types.GET_LEADERBOARD_FAILURE,
+                payload: {
+                    message: response.message
+                }
+            })
+        }
     }
 }
-
-export const isLoading = () => ({ type: IS_LOADING });

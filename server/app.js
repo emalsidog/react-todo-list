@@ -22,9 +22,9 @@ app.use(cookieParser());
 app.use(express.json());
 
 // Routes
-app.use("/", require("./routes/folder"));
 app.use("/accounts", require("./routes/auth"));
 app.use("/leaderboard", require("./routes/leaderboard"));
+app.use("/", require("./routes/folder"));
 
 // MongoDB connection
 mongoose.connect("mongodb+srv://root:root@cluster.09gqa.mongodb.net/react-todo-list?retryWrites=true&w=majority", {
